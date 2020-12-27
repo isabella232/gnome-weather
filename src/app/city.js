@@ -18,9 +18,9 @@
 
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
-const Gnome = imports.gi.GnomeDesktop;
 const GObject = imports.gi.GObject;
 const Gtk = imports.gi.Gtk;
+const Gdk = imports.gi.Gdk;
 const GWeather = imports.gi.GWeather;
 
 const WorldView = imports.app.world;
@@ -47,7 +47,6 @@ var WeatherWidget = GObject.registerClass({
 
     _init(application, window, params) {
         super._init(Object.assign({
-            shadow_type: Gtk.ShadowType.NONE,
             name: 'weather-page'
         }, params));
 
@@ -69,7 +68,7 @@ var WeatherWidget = GObject.registerClass({
             }
 
             this._forecasts[t] = box;
-            this['_forecast_' + t + '_viewport'].add(box);
+            this['_forecast_' + t + '_viewport'].set_child(box);
 
             let fsw = this['_forecast_' + t];
             let hscrollbar = fsw.get_hscrollbar();
@@ -202,7 +201,11 @@ var WeatherWidget = GObject.registerClass({
 
         this._worldView.refilter();
 
-        this._conditionsImage.iconName = info.get_icon_name() + '-large';
+        // TODO: GTK4
+        //const iconTheme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default());
+        //const icon = iconTheme.lookup_icon(), 84, 0);
+        this._conditionsImage.set_from_icon_name(info.get_icon_name());
+        this._conditionsImage.set_icon_size(2);
 
         const [, tempValue] = info.get_value_temp(GWeather.TemperatureUnit.DEFAULT);
         this._temperatureLabel.label = '%.0f°'.format(tempValue);
@@ -288,9 +291,6 @@ var WeatherView = GObject.registerClass({
         this._updateId = 0;
 
         this.connect('destroy', () => this._onDestroy());
-
-        this._wallClock = new Gnome.WallClock();
-        this._clockHandlerId = 0;
 
         this._desktopSettings = new Gio.Settings({ schema_id: 'org.gnome.desktop.interface' });
     }

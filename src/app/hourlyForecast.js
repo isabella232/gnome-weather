@@ -22,6 +22,7 @@ const GObject = imports.gi.GObject;
 const Gdk = imports.gi.Gdk;
 const Gtk = imports.gi.Gtk;
 const GWeather = imports.gi.GWeather;
+const Graphene = imports.gi.Graphene;
 
 const Util = imports.misc.util;
 
@@ -35,17 +36,21 @@ var HourlyForecastFrame = GObject.registerClass(class ForecastFrame extends Gtk.
             halign: Gtk.Align.START,
             margin_start: 20,
             margin_end: 20,
-            shadow_type: Gtk.ShadowType.IN,
+            // TODO: GTK4
+            // Shadow types have been removed, fix up this styling.
+            // shadow_type: Gtk.ShadowType.IN,
             name: 'hourly-forecast-frame',
         }, params));
 
-        this.get_accessible().accessible_name = _('Hourly Forecast');
+        // TODO: GTK4
+        // Adapt to the new a11y APIs
+        // this.get_accessible().accessible_name = _('Hourly Forecast');
 
         this._settings = new Gio.Settings({ schema_id: 'org.gnome.desktop.interface' });
 
         this._box = new Gtk.Box({ orientation: Gtk.Orientation.HORIZONTAL,
                                   spacing: 0});
-        this.add(this._box);
+        this.set_child(this._box);
 
         this._hourlyInfo = [];
 
@@ -91,7 +96,7 @@ var HourlyForecastFrame = GObject.registerClass(class ForecastFrame extends Gtk.
             let label = new Gtk.Label({ label: _('Forecast not available'),
                                         use_markup: true,
                                         visible: true });
-            this._box.pack_start(label, true, false, 0);
+            this._box.prepend(label);
         }
 
         this._hourlyInfo = hourlyInfo;
@@ -111,12 +116,18 @@ var HourlyForecastFrame = GObject.registerClass(class ForecastFrame extends Gtk.
             timeFormat = '%R';
 
         let hourEntry = new HourEntry();
+        hourEntry.timeLabel.label = datetime.format(timeFormat);
+
+        hourEntry.image.set_from_icon_name(info.get_icon_name());
+        // TODO: GTK4
+        // Use the correct enum here, GTK4 only has 2 icon "sizes"
+        hourEntry.image.set_icon_size(1);
 
         hourEntry.timeLabel.label = datetime.format(timeFormat);
         hourEntry.image.iconName = info.get_icon_name() + '-small';
         hourEntry.temperatureLabel.label = Util.getTempString(info);
 
-        this._box.pack_start(hourEntry, false, false, 0);
+        this._box.prepend(hourEntry);
 
         this._hasForecastInfo = true;
     }
@@ -124,18 +135,26 @@ var HourlyForecastFrame = GObject.registerClass(class ForecastFrame extends Gtk.
     _addSeparator() {
         let separator = new Gtk.Separator({ orientation: Gtk.Orientation.VERTICAL,
                                             visible: true});
-        this._box.pack_start(separator, false, false, 0);
+        this._box.prepend(separator);
     }
 
     clear() {
-        this._box.foreach(function(w) { w.destroy(); });
+      // TODO: GTK4
+      // Figure out the best replacement for this pattern.
+      //  this._box.foreach(function(w) { w.destroy(); });
     }
 
     hasForecastInfo() {
         return this._hasForecastInfo;
     }
 
-    vfunc_draw(cr) {
+    vfunc_snapshot(snapshot) {
+        const allocation = this.get_allocation();
+        
+        const rect = new Graphene.Rect();
+        rect.init(0,0,allocation.width, allocation.height);
+        
+        let cr = snapshot.append_cairo(rect);
         const temps = this._hourlyInfo.map(info => Math.round(Util.getTemp(info)));
 
         const maxTemp = Math.max(...temps);
@@ -213,7 +232,7 @@ var HourlyForecastFrame = GObject.registerClass(class ForecastFrame extends Gtk.
         cr.lineTo(0, frameHeight);
         cr.fill();
 
-        super.vfunc_draw(cr);
+        super.vfunc_snapshot(snapshot);
         cr.$dispose();
 
         return Gdk.EVENT_PROPAGATE;

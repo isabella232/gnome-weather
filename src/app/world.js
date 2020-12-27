@@ -35,13 +35,14 @@ var WorldContentView = GObject.registerClass(
             vexpand: false
         }, params));
 
-        this.get_accessible().accessible_name = _("World view");
+        // TODO: GTK4
+        //this.get_accessible().accessible_name = _("World view");
 
         let builder = new Gtk.Builder();
         builder.add_from_resource('/org/gnome/Weather/places-popover.ui');
 
         let grid = builder.get_object('popover-grid');
-        this.add(grid);
+        this.set_child(grid);
 
         this.model = application.model;
         this._window = window;
@@ -149,7 +150,8 @@ var WorldContentView = GObject.registerClass(
 
         let grid = new Gtk.Grid({ orientation: Gtk.Orientation.HORIZONTAL,
                                   column_spacing: 12,
-                                  margin: 12,
+                                  // TODO: GTK4
+                                  //  margin: 12,
                                   visible: true });
 
         let name = location.get_city_name();
@@ -172,30 +174,33 @@ var WorldContentView = GObject.registerClass(
         grid.attach(tempLabel, 1, 0, 1, 1);
 
         if (isCurrentLocation) {
-            let image = new Gtk.Image({ icon_size: Gtk.IconSize.LARGE_TOOLBAR,
+            let image = new Gtk.Image({ icon_size: Gtk.IconSize.LARGE,
                                         icon_name: 'mark-location-symbolic',
                                         use_fallback: true,
-                                        halign: Gtk.Align.START,
-                                        visible: true });
+                                        halign: Gtk.Align.START
+                                     });
             locationGrid.attach(image, 1, 0, 1, 1);
         }
 
-        let image = new Gtk.Image({ icon_size: Gtk.IconSize.LARGE_TOOLBAR,
+        let image = new Gtk.Image({ icon_size: Gtk.IconSize.LARGE,
                                     use_fallback: true,
-                                    halign: Gtk.Align.END,
-                                    visible: true });
+                                    halign: Gtk.Align.END
+                                 });
         grid.attach(image, 2, 0, 1, 1);
 
         let row = new Gtk.ListBoxRow({ visible: true });
-        row.add(grid);
+        row.set_child(grid);
         row._info = info;
         row._isCurrentLocation = isCurrentLocation;
 
         if (isCurrentLocation) {
             if (this._currentLocationAdded) {
                 let row0 = this._listbox.get_row_at_index(0);
-                if (row0)
-                    row0.destroy();
+                if (row0) {
+                    // TODO: GTK4
+                    delete row0._info;
+                    this._listbox.remove(row0);
+                }
             }
 
             this._currentLocationAdded = true;
@@ -219,13 +224,21 @@ var WorldContentView = GObject.registerClass(
     }
 
     _onLocationRemoved(model, info) {
-        let rows = this._listbox.get_children();
-
-        for (let row of rows) {
+        let i = 0;
+        let row = null;
+        // TODO: GTK4
+        // This seems like the correct way to iterate over rows now.
+        while (row = this._listbox.get_row_at_index(i)) {
             if (row._info == info) {
-                row.destroy();
+               // TODO: GTK4
+               // row.destroy();
+               delete row._info;
+               this._listbox.remove(row);
+               
                 break;
             }
+
+            i++;
         }
 
         if (info._updatedId) {

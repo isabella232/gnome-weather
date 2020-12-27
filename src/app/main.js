@@ -20,12 +20,13 @@ pkg.initFormat();
 pkg.initGettext();
 window.ngettext = imports.gettext.ngettext;
 
-pkg.require({ 'Gdk': '3.0',
+pkg.require({ 'Gdk': '4.0',
               'Gio': '2.0',
               'GLib': '2.0',
               'GObject': '2.0',
-              'Gtk': '3.0',
-              'GWeather': '3.0' });
+              'Gtk': '4.0',
+              'Handy': '4',
+              'GWeather': '4.0' });
 
 const ByteArray = imports.byteArray;
 const Handy = imports.gi.Handy;
@@ -90,7 +91,7 @@ const Application = GObject.registerClass(
         super.vfunc_startup();
         Handy.init();
         // ensure the type before we call to GtkBuilder
-        GWeather.LocationEntry;
+        Gtk.Entry;
 
         Util.loadStyleSheet('/org/gnome/Weather/application.css');
 
@@ -167,9 +168,9 @@ const Application = GObject.registerClass(
         });
         this.add_action(temperatureAction);
 
-        this.add_accelerator("Escape", "win.selection-mode", new GLib.Variant('b', false));
-        this.add_accelerator("<Primary>a", "win.select-all", null);
-        this.add_accelerator("<Primary>q", "app.quit", null);
+        // this.add_accelerator("Escape", "win.selection-mode", new GLib.Variant('b', false));
+        // this.add_accelerator("<Primary>a", "win.select-all", null);
+        // this.add_accelerator("<Primary>q", "app.quit", null);
     }
 
     vfunc_dbus_register(conn, path) {
@@ -193,7 +194,7 @@ const Application = GObject.registerClass(
             let timeoutId;
             let model = this.model;
 
-            timeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 1000, function() {
+            timeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 10000, function() {
                 log('Timeout during model load, perhaps the network is not available?');
                 model.disconnect(notifyId);
                 win.show();

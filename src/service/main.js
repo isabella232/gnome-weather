@@ -21,7 +21,7 @@ pkg.initFormat();
 pkg.require({ 'Gio': '2.0',
               'GLib': '2.0',
               'GObject': '2.0',
-              'GWeather': '3.0' });
+              'GWeather': '4.0' });
 
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;

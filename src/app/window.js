@@ -38,7 +38,6 @@ var MainWindow = GObject.registerClass(
 
     _init(params) {
         super._init(params);
-
         this._world = this.application.world;
         this.currentInfo = null;
         this._currentPage = Page.SEARCH;
@@ -73,7 +72,8 @@ var MainWindow = GObject.registerClass(
 
         let grid = builder.get_object('main-panel');
         this._header = builder.get_object('header-bar');
-        this._header.set_title(_('Select Location'));
+        // TODO: GTK4
+        // this._header.set_title(_('Select Location'));
 
         this._model = this.application.model;
 
@@ -89,15 +89,15 @@ var MainWindow = GObject.registerClass(
 
         let primaryMenuModel = builder.get_object('primary-menu');
         let primaryMenuButton = builder.get_object('primary-menu-button');
-        let popover = Gtk.Popover.new_from_model(primaryMenuButton, primaryMenuModel);
+        let popover = Gtk.PopoverMenu.new_from_model(primaryMenuModel);
 
         primaryMenuButton.set_popover(popover);
 
         this._stack = builder.get_object('main-stack');
 
-        this._cityView = new City.WeatherView(this.application, this,
-                                              { hexpand: true, vexpand: true });
-        this._stack.add(this._cityView);
+        this._cityView = new City.WeatherView(this.application, this, { hexpand: true,
+                                                vexpand: true });
+        this._stack.add_child(this._cityView);
 
         this._forecastStackSwitcher = builder.get_object('switcher-title');
         this._forecastStackSwitcher.set_stack(this._cityView.getInfoPage().getForecastStack());
@@ -109,8 +109,10 @@ var MainWindow = GObject.registerClass(
 
         let box = builder.get_object('main-box');
 
-        this.add(box);
-        box.show_all();
+        this.set_child(box);
+        // TODO: GTK4
+        // Children are now shown by default, verify that everything is visible though.
+        // box.show_all();
 
         for (let i = 0; i < this._pageWidgets[Page.CITY].length; i++)
             this._pageWidgets[Page.CITY][i].hide();
@@ -135,10 +137,12 @@ var MainWindow = GObject.registerClass(
     }
 
     _setTitle(page) {
+        // TODO: GTK4
+        // We need to update all of our headerbar handling.
         if (page == Page.CITY)
-            this._header.set_custom_title(this._forecastStackSwitcher);
+            ;//this._header.set_custom_title(this._forecastStackSwitcher);
         else
-            this._header.set_custom_title(null);
+            ;//this._header.set_custom_title(null);
     }
 
     _goToPage(page) {
@@ -146,8 +150,10 @@ var MainWindow = GObject.registerClass(
             this._pageWidgets[this._currentPage][i].hide();
 
         for (let i = 0; i < this._pageWidgets[page].length; i++) {
-            let widget = this._pageWidgets[page][i];
-            if (!widget.no_show_all)
+            // TODO: GTK4
+            // I believe this property is no longer relevant
+            // let widget = this._pageWidgets[page][i];
+            // if (!widget.no_show_all)
                 this._pageWidgets[page][i].show();
         }
 
@@ -178,6 +184,7 @@ var MainWindow = GObject.registerClass(
     }
 
     showInfo(info, isCurrentLocation) {
+        log(info);
         if (!info) {
             if (isCurrentLocation && this._showingDefault)
                 this.showDefault();
@@ -237,8 +244,7 @@ var MainWindow = GObject.registerClass(
               website: 'https://wiki.gnome.org/Apps/Weather',
               wrap_license: true,
               modal: true,
-              transient_for: this,
-              use_header_bar: true
+              transient_for: this
             });
 
         // HACK: we need to poke into gtkaboutdialog internals
