@@ -126,7 +126,7 @@
                 </child>
           </object>
         </child>
-        <child>     
+        <child>
           <object class="GtkGrid" id="locations-grid">
                 <property name="name">locations-grid</property>
                 <property name="orientation">vertical</property>

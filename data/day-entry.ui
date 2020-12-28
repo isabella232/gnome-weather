@@ -32,7 +32,7 @@
           </object>
         </child>
         <child>
-          <object class="GtkLabel">  
+          <object class="GtkLabel">
             <property name="halign">end</property>
             <property name="label" translatable="yes">Afternoon</property>
             <layout>

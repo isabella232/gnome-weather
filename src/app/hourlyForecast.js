@@ -140,7 +140,7 @@ var HourlyForecastFrame = GObject.registerClass(class ForecastFrame extends Gtk.
         const allocation = this.get_allocation();
         
         const rect = new Graphene.Rect();
-        rect.init(0,0,allocation.width, allocation.height);
+        rect.init(0, 0, allocation.width, allocation.height);
         
         let cr = snapshot.append_cairo(rect);
         const temps = this._hourlyInfo.map(info => Math.round(Util.getTemp(info)));
