@@ -110,15 +110,9 @@ var HourlyForecastFrame = GObject.registerClass(class ForecastFrame extends Gtk.
             timeFormat = '%R';
 
         let hourEntry = new HourEntry();
-        hourEntry.timeLabel.label = datetime.format(timeFormat);
-
-        hourEntry.image.set_from_icon_name(info.get_icon_name());
-        // TODO: GTK4
-        // Use the correct enum here, GTK4 only has 2 icon "sizes"
-        hourEntry.image.set_icon_size(1);
 
         hourEntry.timeLabel.label = datetime.format(timeFormat);
-        hourEntry.image.iconName = info.get_icon_name() + '-small';
+        hourEntry.image.iconName = `${info.get_icon_name()}-small`;
         hourEntry.temperatureLabel.label = Util.getTempString(info);
 
         this._box.prepend(hourEntry);

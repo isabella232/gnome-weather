@@ -178,8 +178,7 @@ var DailyForecastFrame = GObject.registerClass(class DailyForecastFrame extends 
         let dateFormat = _('%b %e');
         dayEntry.dateLabel.label = day.format(dateFormat);
 
-        dayEntry.image.set_from_icon_name(dayInfo.get_icon_name());
-        dayEntry.image.set_icon_size(1);
+        dayEntry.image.iconName = `${dayInfo.get_icon_name()}-small`;
 
         dayEntry.maxTemperatureLabel.label = Util.getTempString(maxInfo);
         dayEntry.minTemperatureLabel.label = Util.getTempString(minInfo);
