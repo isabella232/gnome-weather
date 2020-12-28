@@ -168,9 +168,9 @@ const Application = GObject.registerClass(
         });
         this.add_action(temperatureAction);
 
-        // this.add_accelerator("Escape", "win.selection-mode", new GLib.Variant('b', false));
-        // this.add_accelerator("<Primary>a", "win.select-all", null);
-        // this.add_accelerator("<Primary>q", "app.quit", null);
+        this.set_accels_for_action("win.selection-mode", ["Escape"]);
+        this.set_accels_for_action("win.select-all", ["<Primary>a"]);
+        this.set_accels_for_action("app.quit", ["<Primary>q"]);
     }
 
     vfunc_dbus_register(conn, path) {
