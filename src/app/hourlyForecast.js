@@ -36,16 +36,10 @@ var HourlyForecastFrame = GObject.registerClass(class ForecastFrame extends Gtk.
             halign: Gtk.Align.START,
             margin_start: 20,
             margin_end: 20,
-            // TODO: GTK4
-            // Shadow types have been removed, fix up this styling.
-            // shadow_type: Gtk.ShadowType.IN,
             name: 'hourly-forecast-frame',
         }, params));
 
-        // TODO: GTK4
-        // Adapt to the new a11y APIs
-        // this.get_accessible().accessible_name = _('Hourly Forecast');
-
+        this.update_property([Gtk.AccessibleProperty.LABEL], [_('Hourly Forecast')]);
         this._settings = new Gio.Settings({ schema_id: 'org.gnome.desktop.interface' });
 
         this._box = new Gtk.Box({ orientation: Gtk.Orientation.HORIZONTAL,
@@ -139,9 +133,9 @@ var HourlyForecastFrame = GObject.registerClass(class ForecastFrame extends Gtk.
     }
 
     clear() {
-      // TODO: GTK4
-      // Figure out the best replacement for this pattern.
-      //  this._box.foreach(function(w) { w.destroy(); });
+      for (const w of Array.from(this._box)) {
+          this._box.remove(w);
+      }
     }
 
     hasForecastInfo() {

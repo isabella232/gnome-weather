@@ -30,12 +30,10 @@ var DailyForecastFrame = GObject.registerClass(class DailyForecastFrame extends 
             halign: Gtk.Align.START,
             margin_start: 20,
             margin_end: 20,
-        //    shadow_type: Gtk.ShadowType.IN,
             name: 'daily-forecast-frame',
         }, params));
 
-        // this.get_accessible().accessible_name = _('Daily Forecast');
-
+        this.update_property([Gtk.AccessibleProperty.LABEL], [_('Daily Forecast')]);
         this._box = new Gtk.Box({ orientation: Gtk.Orientation.HORIZONTAL,
                                   spacing: 0});
         this.set_child(this._box);
@@ -216,7 +214,9 @@ var DailyForecastFrame = GObject.registerClass(class DailyForecastFrame extends 
     }
 
     clear() {
-  //      this._box.foreach(function(w) { w.destroy(); });
+        for (const w of Array.from(this._box)) {
+            this._box.remove(w);
+        }
     }
 });
 

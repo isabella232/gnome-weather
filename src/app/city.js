@@ -37,7 +37,7 @@ const UPDATED_TIME_TIMEOUT = 60; //s
 var WeatherWidget = GObject.registerClass({
     Template: 'resource:///org/gnome/Weather/weather-widget.ui',
     InternalChildren: ['contentFrame', 'outerGrid',
-                       'conditionsImage', 'placesButton', 'placesLabel',
+                       'conditionsImage', 'placesButton',
                        'temperatureLabel', 'apparentLabel',
                        'forecastStack','leftButton', 'rightButton',
                        'forecast-hourly', 'forecast-hourly-viewport',
@@ -195,17 +195,14 @@ var WeatherWidget = GObject.registerClass({
             country = country.get_parent();
 
         if (country)
-            this._placesLabel.set_text(city.get_name() + ', ' + country.get_name());
+            this._placesButton.set_label(city.get_name() + ', ' + country.get_name());
         else
-            this._placesLabel.set_text(city.get_name());
+            this._placesButton.set_label(city.get_name());
 
         this._worldView.refilter();
 
-        // TODO: GTK4
-        //const iconTheme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default());
-        //const icon = iconTheme.lookup_icon(), 84, 0);
         this._conditionsImage.set_from_icon_name(info.get_icon_name());
-        this._conditionsImage.set_icon_size(2);
+        this._conditionsImage.set_pixel_size(84);
 
         const [, tempValue] = info.get_value_temp(GWeather.TemperatureUnit.DEFAULT);
         this._temperatureLabel.label = '%.0f°'.format(tempValue);

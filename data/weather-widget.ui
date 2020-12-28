@@ -2,22 +2,17 @@
 <interface>
   <requires lib="gtk" version="4.0"/>
   <template class="Gjs_WeatherWidget" parent="GtkFrame">
-    <property name="can_focus">0</property>
     <property name="child">
       <object class="GtkFrame" id="contentFrame">
         <property name="name">weather-page-content-view</property>
-        <property name="can_focus">0</property>
         <property name="child">
           <object class="GtkGrid" id="outerGrid">
-            <property name="can_focus">0</property>
             <property name="vexpand">1</property>
             <child>
               <object class="GtkOverlay" id="forecast-overlay">
-                <property name="can_focus">0</property>
                 <property name="margin_bottom">24</property>
                 <property name="child">
                   <object class="GtkStack" id="forecastStack">
-                    <property name="can_focus">0</property>
                     <child>
                       <object class="GtkStackPage">
                         <property name="name">hourly</property>
@@ -29,7 +24,6 @@
                             <property name="min_content_width">308</property>
                             <property name="child">
                               <object class="GtkViewport" id="forecast-hourly-viewport">
-                                <property name="can_focus">0</property>
                                 <property name="hscroll_policy">natural</property>
                                 <property name="vscroll_policy">natural</property>
                               </object>
@@ -49,7 +43,6 @@
                             <property name="min_content_width">308</property>
                             <property name="child">
                               <object class="GtkViewport" id="forecast-daily-viewport">
-                                <property name="can_focus">0</property>
                                 <property name="hscroll_policy">natural</property>
                                 <property name="vscroll_policy">natural</property>
                               </object>
@@ -68,7 +61,6 @@
                     <property name="margin_end">28</property>
                     <child>
                       <object class="GtkImage" id="right-image">
-                        <property name="can_focus">0</property>
                         <property name="icon_name">go-next-symbolic</property>
                       </object>
                     </child>
@@ -86,7 +78,6 @@
                     <property name="margin_start">28</property>
                     <child>
                       <object class="GtkImage" id="left-image">
-                        <property name="can_focus">0</property>
                         <property name="icon_name">go-previous-symbolic</property>
                         <property name="icon_size">1</property>
                       </object>
@@ -106,12 +97,10 @@
             <child>
               <object class="GtkGrid" id="inner-grid">
                 <property name="name">conditions-grid</property>
-                <property name="can_focus">0</property>
                 <property name="column_spacing">10</property>
                 <child>
                   <object class="GtkImage" id="conditionsImage">
                     <property name="name">conditions-image</property>
-                    <property name="can_focus">0</property>
                     <property name="halign">start</property>
                     <property name="valign">center</property>
                     <property name="pixel_size">84</property>
@@ -131,27 +120,7 @@
                     <property name="receives_default">1</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
-                    <child>
-                      <object class="GtkBox" id="placesBox">
-                        <property name="can_focus">0</property>
-                        <property name="spacing">12</property>
-                        <child>
-                          <object class="GtkLabel" id="placesLabel">
-                            <property name="name">places-label</property>
-                            <property name="wrap">1</property>
-                            <property name="wrap-mode">word-char</property>
-                            <property name="can_focus">0</property>
-                            <property name="label" translatable="yes">Places</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkImage" id="placesImage">
-                            <property name="can_focus">0</property>
-                            <property name="icon_name">pan-down-symbolic</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                    <property name="label" translatable="yes">Places</property>
                     <style>
                       <class name="text-button"/>
                       <class name="flat"/>
@@ -163,16 +132,14 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkBox" id="temperatureBox">
-                    <property name="can_focus">0</property>
+                  <object class="GtkBox" id="temperatureBox">   
                     <property name="halign">start</property>
                     <property name="valign">start</property>
                     <property name="spacing">8</property>
                     <property name="baseline_position">bottom</property>
                     <child>
                       <object class="GtkLabel" id="temperatureLabel">
-                        <property name="name">temperature-label</property>
-                        <property name="can_focus">0</property>
+                        <property name="name">temperature-label</property>                   
                         <property name="halign">start</property>
                         <property name="valign">baseline</property>
                       </object>
@@ -180,7 +147,6 @@
                     <child>
                       <object class="GtkLabel" id="apparentLabel">
                         <property name="name">apparent-label</property>
-                        <property name="can_focus">0</property>
                         <property name="halign">start</property>
                         <property name="valign">baseline</property>
                       </object>
@@ -199,14 +165,12 @@
             </child>
             <child>
               <object class="GtkGrid">
-                <property name="can_focus">0</property>
                 <property name="margin_start">18</property>
                 <property name="margin_bottom">20</property>
                 <property name="row_spacing">8</property>
                 <child>
                   <object class="GtkLabel" id="updatedTimeLabel">
                     <property name="name">updated-time-label</property>
-                    <property name="can_focus">0</property>
                     <property name="halign">start</property>
                     <layout>
                       <property name="column">0</property>
@@ -217,7 +181,6 @@
                 <child>
                   <object class="GtkLabel" id="attributionLabel">
                     <property name="name">attribution-label</property>
-                    <property name="can_focus">0</property>
                     <property name="use_markup">1</property>
                     <property name="wrap">1</property>
                     <property name="xalign">0</property>

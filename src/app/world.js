@@ -35,14 +35,15 @@ var WorldContentView = GObject.registerClass(
             vexpand: false
         }, params));
 
-        // TODO: GTK4
-        //this.get_accessible().accessible_name = _("World view");
-
+        this.update_property([Gtk.AccessibleProperty.LABEL], [_("World view")]);
         let builder = new Gtk.Builder();
         builder.add_from_resource('/org/gnome/Weather/places-popover.ui');
 
         let grid = builder.get_object('popover-grid');
         this.set_child(grid);
+
+        this._searchGrid = builder.get_object('search-grid');
+        this._locationsGrid = builder.get_object('locations-grid');
 
         this.model = application.model;
         this._window = window;
@@ -126,9 +127,9 @@ var WorldContentView = GObject.registerClass(
 
     _syncStackPopover() {
         if (this.model.length == 1)
-            this._stackPopover.set_visible_child_name("search-grid");
+            this._stackPopover.set_visible_child(this._searchGrid);
         else
-            this._stackPopover.set_visible_child_name("locations-grid");
+            this._stackPopover.set_visible_child(this._locationsGrid);
     }
 
     _filterListbox(row) {
@@ -150,8 +151,10 @@ var WorldContentView = GObject.registerClass(
 
         let grid = new Gtk.Grid({ orientation: Gtk.Orientation.HORIZONTAL,
                                   column_spacing: 12,
-                                  // TODO: GTK4
-                                  //  margin: 12,
+                                  margin_start: 12,
+                                  margin_end: 12,
+                                  margin_top: 12,
+                                  margin_bottom: 12,
                                   visible: true });
 
         let name = location.get_city_name();
@@ -224,22 +227,10 @@ var WorldContentView = GObject.registerClass(
     }
 
     _onLocationRemoved(model, info) {
-        let i = 0;
-        let row = null;
-        // TODO: GTK4
-        // This seems like the correct way to iterate over rows now.
-        while (row = this._listbox.get_row_at_index(i)) {
-            if (row._info == info) {
-               // TODO: GTK4
-               // row.destroy();
-               delete row._info;
-               this._listbox.remove(row);
-               
-                break;
-            }
-
-            i++;
-        }
+        Array.from(this._listbox).forEach((row) => {
+            delete row._info;
+            this._listbox.remove(row);
+        });
 
         if (info._updatedId) {
             info.disconnect(info._updatedId);

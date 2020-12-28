@@ -194,7 +194,7 @@ const Application = GObject.registerClass(
             let timeoutId;
             let model = this.model;
 
-            timeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 10000, function() {
+            timeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 1000, function() {
                 log('Timeout during model load, perhaps the network is not available?');
                 model.disconnect(notifyId);
                 win.show();

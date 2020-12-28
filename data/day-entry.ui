@@ -2,10 +2,8 @@
 <interface>
   <requires lib="gtk" version="4.0"/>
   <object class="GtkPopoverMenu" id="more_menu">
-    <property name="can_focus">0</property>
     <property name="child">
       <object class="GtkGrid">
-        <property name="can_focus">0</property>
         <property name="row_spacing">8</property>
         <property name="column_spacing">16</property>
         <property name="row_homogeneous">1</property>
@@ -15,7 +13,6 @@
         <property name="margin_end">16</property>
         <child>
           <object class="GtkLabel">
-            <property name="can_focus">0</property>
             <property name="halign">end</property>
             <property name="label" translatable="yes">Night</property>
             <layout>
@@ -26,7 +23,6 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="can_focus">0</property>
             <property name="halign">end</property>
             <property name="label" translatable="yes">Morning</property>
             <layout>
@@ -36,8 +32,7 @@
           </object>
         </child>
         <child>
-          <object class="GtkLabel">
-            <property name="can_focus">0</property>
+          <object class="GtkLabel">  
             <property name="halign">end</property>
             <property name="label" translatable="yes">Afternoon</property>
             <layout>
@@ -48,7 +43,6 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="can_focus">0</property>
             <property name="halign">end</property>
             <property name="label" translatable="yes">Evening</property>
             <layout>
@@ -59,7 +53,6 @@
         </child>
         <child>
           <object class="GtkImage" id="nightImage">
-            <property name="can_focus">0</property>
             <property name="icon_name">weather-showers-symbolic</property>
             <layout>
               <property name="column">1</property>
@@ -69,7 +62,6 @@
         </child>
         <child>
           <object class="GtkImage" id="morningImage">
-            <property name="can_focus">0</property>
             <property name="icon_name">weather-showers-symbolic</property>
             <layout>
               <property name="column">1</property>
@@ -79,7 +71,6 @@
         </child>
         <child>
           <object class="GtkImage" id="afternoonImage">
-            <property name="can_focus">0</property>
             <property name="icon_name">weather-showers-symbolic</property>
             <layout>
               <property name="column">1</property>
@@ -89,7 +80,6 @@
         </child>
         <child>
           <object class="GtkImage" id="eveningImage">
-            <property name="can_focus">0</property>
             <property name="icon_name">weather-showers-symbolic</property>
             <layout>
               <property name="column">1</property>
@@ -99,14 +89,12 @@
         </child>
         <child>
           <object class="GtkGrid">
-            <property name="can_focus">0</property>
             <property name="vexpand">1</property>
             <property name="row_spacing">8</property>
             <property name="row_homogeneous">1</property>
             <property name="column_homogeneous">1</property>
             <child>
               <object class="GtkLabel" id="nightTemperatureLabel">
-                <property name="can_focus">0</property>
                 <property name="label">16°</property>
                 <layout>
                   <property name="column">0</property>
@@ -116,7 +104,6 @@
             </child>
             <child>
               <object class="GtkLabel" id="morningTemperatureLabel">
-                <property name="can_focus">0</property>
                 <property name="label">16°</property>
                 <layout>
                   <property name="column">0</property>
@@ -126,7 +113,6 @@
             </child>
             <child>
               <object class="GtkLabel" id="afternoonTemperatureLabel">
-                <property name="can_focus">0</property>
                 <property name="label">16°</property>
                 <layout>
                   <property name="column">0</property>
@@ -136,7 +122,6 @@
             </child>
             <child>
               <object class="GtkLabel" id="eveningTemperatureLabel">
-                <property name="can_focus">0</property>
                 <property name="label">16°</property>
                 <layout>
                   <property name="column">0</property>
@@ -146,7 +131,6 @@
             </child>
             <child>
               <object class="GtkImage">
-                <property name="can_focus">0</property>
                 <property name="icon_name">weather-windy</property>
                 <layout>
                   <property name="column">0</property>
@@ -156,7 +140,6 @@
             </child>
             <child>
               <object class="GtkImage">
-                <property name="can_focus">0</property>
                 <property name="icon_name">weather-windy</property>
                 <layout>
                   <property name="column">1</property>
@@ -166,7 +149,6 @@
             </child>
             <child>
               <object class="GtkImage">
-                <property name="can_focus">0</property>
                 <property name="icon_name">weather-windy</property>
                 <layout>
                   <property name="column">2</property>
@@ -176,7 +158,6 @@
             </child>
             <child>
               <object class="GtkLabel" id="nightHumidity">
-                <property name="can_focus">0</property>
                 <property name="label">2.1 mm</property>
                 <layout>
                   <property name="column">1</property>
@@ -186,7 +167,6 @@
             </child>
             <child>
               <object class="GtkLabel" id="morningHumidity">
-                <property name="can_focus">0</property>
                 <property name="label">2.1 mm</property>
                 <layout>
                   <property name="column">1</property>
@@ -196,7 +176,6 @@
             </child>
             <child>
               <object class="GtkLabel" id="afternoonHumidity">
-                <property name="can_focus">0</property>
                 <property name="label">2.1 mm</property>
                 <layout>
                   <property name="column">1</property>
@@ -206,7 +185,6 @@
             </child>
             <child>
               <object class="GtkLabel" id="eveningHumidity">
-                <property name="can_focus">0</property>
                 <property name="label">2.1 mm</property>
                 <layout>
                   <property name="column">1</property>
@@ -216,7 +194,6 @@
             </child>
             <child>
               <object class="GtkLabel" id="nightWind">
-                <property name="can_focus">0</property>
                 <property name="label">5 m/s</property>
                 <layout>
                   <property name="column">2</property>
@@ -226,7 +203,6 @@
             </child>
             <child>
               <object class="GtkLabel" id="morningWind">
-                <property name="can_focus">0</property>
                 <property name="label">5 m/s</property>
                 <layout>
                   <property name="column">2</property>
@@ -236,7 +212,6 @@
             </child>
             <child>
               <object class="GtkLabel" id="afternoonWind">
-                <property name="can_focus">0</property>
                 <property name="label">5 m/s</property>
                 <layout>
                   <property name="column">2</property>
@@ -246,7 +221,6 @@
             </child>
             <child>
               <object class="GtkLabel" id="eveningWind">
-                <property name="can_focus">0</property>
                 <property name="label">5 m/s</property>
                 <layout>
                   <property name="column">2</property>
@@ -273,28 +247,24 @@
   <template class="Gjs_DayEntry" parent="GtkBox">
     <property name="width_request">100</property>
     <property name="height_request">200</property>
-    <property name="can_focus">0</property>
     <property name="hexpand">1</property>
     <property name="vexpand">1</property>
     <property name="orientation">vertical</property>
     <property name="spacing">18</property>
     <child>
       <object class="GtkLabel" id="nameLabel">
-        <property name="can_focus">0</property>
         <property name="margin_top">8</property>
         <property name="label">Tues</property>
       </object>
     </child>
     <child>
       <object class="GtkLabel" id="dateLabel">
-        <property name="can_focus">0</property>
         <property name="margin_top">8</property>
         <property name="label">7 June</property>
       </object>
     </child>
     <child>
       <object class="GtkImage" id="image">
-        <property name="can_focus">0</property>
         <property name="valign">start</property>
         <property name="vexpand">1</property>
         <property name="pixel_size">32</property>
@@ -303,14 +273,12 @@
     </child>
     <child>
       <object class="GtkLabel" id="maxTemperatureLabel">
-        <property name="can_focus">0</property>
         <property name="margin_top">8</property>
         <property name="label">18°</property>
       </object>
     </child>
     <child>
       <object class="GtkLabel" id="minTemperatureLabel">
-        <property name="can_focus">0</property>
         <property name="margin_top">8</property>
         <property name="label">9°</property>
       </object>
@@ -318,14 +286,9 @@
     <child>
       <object class="GtkMenuButton">
         <property name="halign">center</property>
+        <property name="icon_name">view-more-symbolic</property>
         <property name="valign">center</property>
         <property name="popover">more_menu</property>
-        <child>
-          <object class="GtkImage">
-            <property name="can_focus">0</property>
-            <property name="icon_name">view-more-symbolic</property>
-          </object>
-        </child>
         <style>
           <class name="image-button"/>
           <class name="circular"/>

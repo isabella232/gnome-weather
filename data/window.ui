@@ -13,13 +13,7 @@
           <object class="GtkButton" id="refresh-button">
             <property name="valign">center</property>
             <property name="action_name">win.refresh</property>
-            <child>
-              <object class="GtkImage" id="refresh-button-image">
-                <property name="can_focus">0</property>
-                <property name="icon_name">view-refresh-symbolic</property>
-                <property name="icon_size">1</property>
-              </object>
-            </child>
+            <property name="icon_name">view-refresh-symbolic</property>
             <style>
               <class name="image-button"/>
             </style>
@@ -31,49 +25,37 @@
             <property name="title" translatable="yes">Weather</property>
           </object>
         </child>
-        <child>
+        <child type="end">
           <object class="GtkMenuButton" id="primary-menu-button">
             <property name="valign">center</property>
-            <child>
-              <object class="GtkImage" id="primary-menu-img">
-                <property name="can_focus">0</property>
-                <property name="icon_name">open-menu-symbolic</property>
-                <property name="icon_size">1</property>
-              </object>
-            </child>
+            <property name="halign">end</property>
+            <property name="icon_name">open-menu-symbolic</property>
             <style>
               <class name="image-button"/>
             </style>
           </object>
-
         </child>
       </object>
     </child>
     <child>
       <object class="GtkGrid" id="main-panel">
-        <property name="can_focus">0</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkStack" id="main-stack">
-            <property name="can_focus">0</property>
             <property name="transition_type">crossfade</property>
             <child>
               <object class="GtkGrid" id="initial-grid">
                 <property name="name">initial-grid</property>
-                <property name="can_focus">0</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
                 <property name="margin_top">25</property>
                 <property name="margin_bottom">25</property>
-                <property name="vexpand">0</property>
                 <property name="orientation">vertical</property>
                 <property name="row_homogeneous">1</property>
                 <child>
                   <object class="GtkImage" id="mark-location-image">
-                    <property name="can_focus">0</property>
                     <property name="halign">center</property>
                     <property name="valign">center</property>
-                    <property name="vexpand">0</property>
                     <property name="icon_name">mark-location-symbolic</property>
                     <property name="use_fallback">1</property>
                     <property name="icon_size">2</property>
@@ -85,10 +67,8 @@
                 </child>
                 <child>
                   <object class="GtkLabel" id="search-location-label">
-                    <property name="can_focus">0</property>
                     <property name="halign">center</property>
                     <property name="valign">center</property>
-                    <property name="vexpand">0</property>
                     <property name="label" translatable="yes">Search for a location</property>
                     <layout>
                       <property name="column">0</property>
@@ -98,10 +78,8 @@
                 </child>
                 <child>
                   <object class="GtkLabel" id="search-nereby-location-label">
-                    <property name="can_focus">0</property>
                     <property name="halign">center</property>
                     <property name="valign">center</property>
-                    <property name="vexpand">0</property>
                     <property name="wrap">1</property>
                     <property name="label" translatable="yes">To see weather information, enter the name of a city.</property>
                     <layout>

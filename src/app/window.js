@@ -70,10 +70,10 @@ var MainWindow = GObject.registerClass(
         builder.add_from_resource('/org/gnome/Weather/window.ui');
         builder.add_from_resource('/org/gnome/Weather/primary-menu.ui');
 
-        let grid = builder.get_object('main-panel');
         this._header = builder.get_object('header-bar');
-        // TODO: GTK4
-        // this._header.set_title(_('Select Location'));
+        this._header.set_title_widget(new Gtk.Label({
+            label: _('Select Location')
+        }));
 
         this._model = this.application.model;
 
@@ -110,9 +110,6 @@ var MainWindow = GObject.registerClass(
         let box = builder.get_object('main-box');
 
         this.set_child(box);
-        // TODO: GTK4
-        // Children are now shown by default, verify that everything is visible though.
-        // box.show_all();
 
         for (let i = 0; i < this._pageWidgets[Page.CITY].length; i++)
             this._pageWidgets[Page.CITY][i].hide();
@@ -137,12 +134,10 @@ var MainWindow = GObject.registerClass(
     }
 
     _setTitle(page) {
-        // TODO: GTK4
-        // We need to update all of our headerbar handling.
         if (page == Page.CITY)
-            ;//this._header.set_custom_title(this._forecastStackSwitcher);
+            this._header.set_title_widget(this._forecastStackSwitcher);
         else
-            ;//this._header.set_custom_title(null);
+            this._header.set_title_widget(null);
     }
 
     _goToPage(page) {
@@ -150,11 +145,7 @@ var MainWindow = GObject.registerClass(
             this._pageWidgets[this._currentPage][i].hide();
 
         for (let i = 0; i < this._pageWidgets[page].length; i++) {
-            // TODO: GTK4
-            // I believe this property is no longer relevant
-            // let widget = this._pageWidgets[page][i];
-            // if (!widget.no_show_all)
-                this._pageWidgets[page][i].show();
+            this._pageWidgets[page][i].show();
         }
 
         this._setTitle(page);
@@ -184,7 +175,6 @@ var MainWindow = GObject.registerClass(
     }
 
     showInfo(info, isCurrentLocation) {
-        log(info);
         if (!info) {
             if (isCurrentLocation && this._showingDefault)
                 this.showDefault();
