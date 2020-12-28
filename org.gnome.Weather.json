@@ -53,17 +53,23 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/libgweather.git"
+                    "url" : "https://gitlab.gnome.org/mlundblad/libgweather.git",
+                    "branch": "wip/mlundblad/no-gtk"
                 }
             ]
         },
         {
             "name" : "libhandy",
             "buildsystem" : "meson",
+            "config-opts" : [
+                "-Denable_vala=false",
+                "-Dgtk_doc=false"
+            ],
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/libhandy.git"
+                    "url" : "https://gitlab.gnome.org/exalm/libhandy.git",
+                    "branch": "gtk4"
                 }
             ]
         },

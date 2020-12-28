@@ -13,7 +13,7 @@ dependency('gtk4', version :'>=4.0')
 dependency('gjs-1.0', version: '>= 1.50.0')
 dependency('geoclue-2.0', version: '>= 0.12.99')
 dependency('libhandy-4', version: '>= 1.1.0')
-dependency('gweather-4.0', version: '>= 40.0')
+dependency('gweather-4.0', version: '>= 3.90.0')
 
 # Profiles
 if get_option('profile') == 'development'
