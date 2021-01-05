@@ -19,7 +19,6 @@
     </child>
     <child>
       <object class="GtkStack" id="auto-location-stack">
-        <property name="can-focus">0</property>
         <property name="vhomogeneous">0</property>
         <property name="hhomogeneous">0</property>
         <child>
@@ -32,7 +31,6 @@
                 <property name="margin_bottom">6</property>
                 <child>
                   <object class="GtkLabel" id="auto-location-label">
-                    <property name="can-focus">0</property>
                     <property name="label" translatable="yes">Automatic Location</property>
                     <property name="halign">start</property>
                     <attributes>
@@ -65,7 +63,6 @@
             <property name="name">locating-label</property>
             <property name="child">
               <object class="GtkLabel" id="locating-label">
-                <property name="can-focus">0</property>
                 <property name="label" translatable="yes">Locating…</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
@@ -81,7 +78,6 @@
     </child>
     <child>
       <object class="GtkStack" id="popover-stack">
-        <property name="can-focus">0</property>
         <property name="vhomogeneous">0</property>
         <property name="hhomogeneous">0</property>
         <child>
@@ -108,7 +104,6 @@
             </child>
             <child>
               <object class="GtkLabel" id="search-label">
-                <property name="can-focus">0</property>
                 <property name="label" translatable="yes">Search for a city</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
@@ -152,7 +147,6 @@
             <property name="row_spacing">10</property>
             <child>
               <object class="GtkLabel" id="recently-viewed-label">
-                <property name="can-focus">0</property>
                 <property name="label" translatable="yes">Viewed Recently</property>
                 <property name="halign">start</property>
                 <attributes>
@@ -170,11 +164,9 @@
             <child>
               <object class="GtkFrame" id="locations-frame">
                 <property name="name">locations-frame</property>
-                <property name="can-focus">0</property>
                 <property name="child">
                   <object class="GtkListBox" id="locations-list-box">
                     <property name="name">locations-list-box</property>
-                    <property name="can-focus">0</property>
                     <property name="hexpand">1</property>
                     <property name="selection-mode">none</property>
                   </object>
