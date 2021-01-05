@@ -122,7 +122,7 @@ var MainWindow = GObject.registerClass(
         this._showingDefault = false;
     }
 
-    _cleanup() {
+    on_destroy() {
         this._cityView._cleanup();
         this._searchEntry._cleanup();
     }

@@ -188,7 +188,8 @@ const Application = GObject.registerClass(
     }
 
     _createWindow() {
-        return new Window.MainWindow({ application: this });
+        const window = new Window.MainWindow({ application: this });
+        return window;
     }
 
     _showWindowWhenReady(win) {
@@ -274,7 +275,7 @@ function main(argv) {
 
     application.connect("window-removed", (_, window) => {
         if (window instanceof Window.MainWindow) {
-            window._cleanup();
+            window.run_dispose();
         }
     });
 

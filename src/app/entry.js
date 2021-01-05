@@ -354,6 +354,7 @@ var LocationSearchEntry = GObject.registerClass(
                 const text = source.get_text();
 
                 if (text === null || text === '') {
+                    this.cb?.(null);
                     this._filter?.set_search(null);
                     if (this._popup && this._popup.visible) {
                         this._popup.visible = false;
