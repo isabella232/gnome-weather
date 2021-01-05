@@ -164,13 +164,13 @@
             <child>
               <object class="GtkFrame" id="locations-frame">
                 <property name="name">locations-frame</property>
-                <property name="child">
+                <child>
                   <object class="GtkListBox" id="locations-list-box">
                     <property name="name">locations-list-box</property>
-                    <property name="hexpand">1</property>
+                    <property name="hexpand">True</property>
                     <property name="selection-mode">none</property>
                   </object>
-                </property>
+                </child>
                 <layout>
                   <property name="column">0</property>
                   <property name="row">1</property>

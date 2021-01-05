@@ -252,9 +252,6 @@ var MainWindow = GObject.registerClass(
         copyrightLabel.show();
 
         aboutDialog.show();
-        aboutDialog.connect('response', function() {
-            aboutDialog.destroy();
-        });
     }
 
     _close() {

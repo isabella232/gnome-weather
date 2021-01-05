@@ -89,7 +89,7 @@
         </child>
         <child>
           <object class="GtkGrid">
-            <property name="vexpand">1</property>
+            <property name="vexpand">True</property>
             <property name="row_spacing">8</property>
             <property name="row_homogeneous">1</property>
             <property name="column_homogeneous">1</property>
@@ -273,7 +273,7 @@
         <child>
           <object class="GtkImage" id="image">
             <property name="valign">start</property>
-            <property name="vexpand">1</property>
+            <property name="vexpand">True</property>
             <property name="pixel_size">32</property>
             <property name="icon_name">weather-showers-symbolic</property>
           </object>

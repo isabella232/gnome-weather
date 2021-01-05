@@ -43,7 +43,7 @@ var WeatherWidget = GObject.registerClass({
                        'forecast-hourly', 'forecast-hourly-viewport',
                        'forecast-daily', 'forecast-daily-viewport',
                        'updatedTimeLabel', 'attributionLabel'],
-}, class WeatherWidget extends Gtk.Frame {
+}, class WeatherWidget extends Gtk.Widget {
 
     _init(application, window, params) {
         super._init(Object.assign({
@@ -117,6 +117,7 @@ var WeatherWidget = GObject.registerClass({
     }
 
     _cleanup() {
+        this._contentFrame.unparent();
         this._worldView._cleanup();
     }
 
@@ -293,6 +294,7 @@ var WeatherView = GObject.registerClass({
         this.connect('destroy', () => this._onDestroy());
 
         this._desktopSettings = new Gio.Settings({ schema_id: 'org.gnome.desktop.interface' });
+        
     }
 
     _cleanup() {

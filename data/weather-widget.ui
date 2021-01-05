@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk" version="4.0"/>
-  <template class="Gjs_WeatherWidget" parent="GtkFrame">
-    <property name="child">
+  <template class="Gjs_WeatherWidget" parent="GtkWidget">
+    <property name="layout_manager">
+      <object class="GtkBinLayout"/>
+    </property>
+    <child>
       <object class="GtkFrame" id="contentFrame">
         <property name="name">weather-page-content-view</property>
-        <property name="child">
+        <child>
           <object class="GtkGrid" id="outerGrid">
-            <property name="vexpand">1</property>
+            <property name="vexpand">True</property>
             <child>
               <object class="GtkOverlay" id="forecast-overlay">
                 <property name="margin_bottom">24</property>
@@ -197,8 +200,8 @@
               </object>
             </child>
           </object>
-        </property>
+        </child>
       </object>
-    </property>
+    </child>
   </template>
 </interface>
