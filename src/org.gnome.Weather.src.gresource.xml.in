@@ -5,6 +5,7 @@
     <file>app/currentLocationController.js</file>
     <file>app/hourlyForecast.js</file>
     <file>app/dailyForecast.js</file>
+    <file>app/entry.js</file>
     <file>app/main.js</file>
     <file>app/window.js</file>
     <file>app/world.js</file>

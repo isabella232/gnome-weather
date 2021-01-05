@@ -116,6 +116,10 @@ var WeatherWidget = GObject.registerClass({
         this.connect('destroy', () => this._onDestroy());
     }
 
+    _cleanup() {
+        this._worldView._cleanup();
+    }
+
     _onDestroy() {
         if (this._updatedTimeTimeoutId) {
             GLib.Source.remove(this._updatedTimeTimeoutId);
@@ -289,6 +293,10 @@ var WeatherView = GObject.registerClass({
         this.connect('destroy', () => this._onDestroy());
 
         this._desktopSettings = new Gio.Settings({ schema_id: 'org.gnome.desktop.interface' });
+    }
+
+    _cleanup() {
+        this._infoPage._cleanup();
     }
 
     get info() {

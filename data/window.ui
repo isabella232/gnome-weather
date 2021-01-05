@@ -5,8 +5,6 @@
     <property name="orientation">vertical</property>
     <child>
       <object class="HdyHeaderBar" id="header-bar">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="vexpand">False</property>
         <property name="centering_policy">strict</property>
         <child>
@@ -21,7 +19,6 @@
         </child>
         <child type="title">
           <object class="HdyViewSwitcherTitle" id="switcher-title">
-            <property name="visible">True</property>
             <property name="title" translatable="yes">Weather</property>
           </object>
         </child>
@@ -89,10 +86,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="initial-grid-location-entry">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="activates_default">True</property>
+                  <object class="Gjs_LocationSearchEntry" id="initial-grid-location-entry">
                     <layout>
                       <property name="column">0</property>
                       <property name="row">3</property>
@@ -111,7 +105,6 @@
     </child>
     <child>
       <object class="HdyViewSwitcherBar" id="switcher-bar">
-        <property name="visible">True</property>
         <property name="reveal" bind-source="switcher-title" bind-property="title-visible" bind-flags="sync-create"/>
       </object>
     </child>

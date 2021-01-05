@@ -247,53 +247,72 @@
   <template class="Gjs_DayEntry" parent="GtkBox">
     <property name="width_request">100</property>
     <property name="height_request">200</property>
-    <property name="hexpand">1</property>
-    <property name="vexpand">1</property>
+    <property name="hexpand">True</property>
+    <property name="vexpand">True</property>
+    <property name="margin_top">18</property>
+    <property name="margin_bottom">18</property>
     <property name="orientation">vertical</property>
     <property name="spacing">18</property>
     <child>
-      <object class="GtkLabel" id="nameLabel">
-        <property name="margin_top">8</property>
-        <property name="label">Tues</property>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkLabel" id="nameLabel">
+            <property name="label">Tues</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="dateLabel">
+            <property name="label">7 June</property>
+            <style>
+              <class name="small-label"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage" id="image">
+            <property name="valign">start</property>
+            <property name="vexpand">1</property>
+            <property name="pixel_size">32</property>
+            <property name="icon_name">weather-showers-symbolic</property>
+          </object>
+        </child>
       </object>
     </child>
     <child>
-      <object class="GtkLabel" id="dateLabel">
-        <property name="margin_top">8</property>
-        <property name="label">7 June</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkImage" id="image">
-        <property name="valign">start</property>
-        <property name="vexpand">1</property>
-        <property name="pixel_size">32</property>
-        <property name="icon_name">weather-showers-symbolic</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkLabel" id="maxTemperatureLabel">
-        <property name="margin_top">8</property>
-        <property name="label">18°</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkLabel" id="minTemperatureLabel">
-        <property name="margin_top">8</property>
-        <property name="label">9°</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkMenuButton">
-        <property name="halign">center</property>
-        <property name="icon_name">view-more-symbolic</property>
-        <property name="valign">center</property>
-        <property name="popover">more_menu</property>
-        <style>
-          <class name="image-button"/>
-          <class name="circular"/>
-          <class name="flat"/>
-        </style>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">12</property>
+        <child>
+          <object class="GtkLabel" id="maxTemperatureLabel">
+            <property name="label">18°</property>
+            <style>
+              <class name="forecast-temperature-label"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="minTemperatureLabel">
+            <property name="label">9°</property>
+            <style>
+              <class name="forecast-low-temperature-label"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkMenuButton">
+            <property name="halign">center</property>
+            <property name="icon_name">view-more-symbolic</property>
+            <property name="valign">center</property>
+            <property name="popover">more_menu</property>
+            <style>
+              <class name="image-button"/>
+              <class name="circular"/>
+              <class name="flat"/>
+            </style>
+          </object>
+        </child>
       </object>
     </child>
   </template>

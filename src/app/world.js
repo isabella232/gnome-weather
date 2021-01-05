@@ -42,7 +42,9 @@ var WorldContentView = GObject.registerClass(
         let grid = builder.get_object('popover-grid');
         this.set_child(grid);
 
-        this._searchGrid = builder.get_object('search-grid');
+        this._searchResults = builder.get_object('city-search-results');
+        this._searchGrid = builder.get_object('empty-search-grid');
+        this._searchResultsGrid = builder.get_object('search-grid');
         this._locationsGrid = builder.get_object('locations-grid');
 
         this.model = application.model;
@@ -60,11 +62,20 @@ var WorldContentView = GObject.registerClass(
             }
         });
 
-        let locationEntry = builder.get_object('location-entry');
-        locationEntry.connect('notify::location', (entry) => this._locationChanged(entry));
+        this._locationEntry = builder.get_object('location-entry');
+        this._locationEntry.set_list_view(this._searchResults);
+        // TODO: Signal-ify this
+        this._locationEntry.onSearch((term) => {
+            if (term) {
+                this._stackPopover.set_visible_child(this._searchResultsGrid);
+            } else {
+                this._syncStackPopover();
+            }
+        })
+        this._locationEntry.connect('notify::location', (entry) => this._locationChanged(entry));
 
         this.connect('show', () => {
-            locationEntry.grab_focus();
+            this._locationEntry.grab_focus();
         });
 
         let autoLocStack = builder.get_object('auto-location-stack');
@@ -119,6 +130,12 @@ var WorldContentView = GObject.registerClass(
         let list = this.model.getAll();
         for (let i = list.length - 1; i >= 0; i--)
             this._onLocationAdded(this.model, list[i], list[i]._isCurrentLocation);
+    }
+
+    _cleanup() {
+        this._locationEntry._cleanup();
+
+        this._listbox.set_header_func(null);
     }
 
     refilter() {

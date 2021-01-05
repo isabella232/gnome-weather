@@ -122,6 +122,11 @@ var MainWindow = GObject.registerClass(
         this._showingDefault = false;
     }
 
+    _cleanup() {
+        this._cityView._cleanup();
+        this._searchEntry._cleanup();
+    }
+
     update() {
         this._cityView.update();
     }
@@ -191,8 +196,9 @@ var MainWindow = GObject.registerClass(
                 if (!this._cityView.info._isCurrentLocation)
                     return;
             } else if (this._currentPage == Page.SEARCH) {
-                if (this._searchEntry.text.length > 0)
-                    return;
+                // TODO
+                // if (this._searchEntry.text.length > 0)
+                //    return;
             }
         }
 

@@ -20,13 +20,15 @@ pkg.initFormat();
 pkg.initGettext();
 window.ngettext = imports.gettext.ngettext;
 
-pkg.require({ 'Gdk': '4.0',
-              'Gio': '2.0',
-              'GLib': '2.0',
-              'GObject': '2.0',
-              'Gtk': '4.0',
-              'Handy': '4',
-              'GWeather': '4.0' });
+pkg.require({
+    'Gdk': '4.0',
+    'Gio': '2.0',
+    'GLib': '2.0',
+    'GObject': '2.0',
+    'Gtk': '4.0',
+    'Handy': '4',
+    'GWeather': '4.0'
+});
 
 const ByteArray = imports.byteArray;
 const Handy = imports.gi.Handy;
@@ -42,6 +44,9 @@ const Window = imports.app.window;
 const World = imports.shared.world;
 const CurrentLocationController = imports.app.currentLocationController;
 
+// ensure the type before we call to GtkBuilder
+imports.app.entry;
+
 const ShellIntegrationInterface = ByteArray.toString(
     Gio.resources_lookup_data('/org/gnome/shell/ShellWeatherIntegration.xml', 0).get_data());
 
@@ -55,9 +60,10 @@ const Application = GObject.registerClass(
     class WeatherApplication extends Gtk.Application {
 
     _init() {
-        super._init({ application_id: pkg.name,
-                      flags: (Gio.ApplicationFlags.CAN_OVERRIDE_APP_ID |  Gio.ApplicationFlags.FLAGS_NONE) });
-
+        super._init({
+            application_id: pkg.name,
+            flags: (Gio.ApplicationFlags.CAN_OVERRIDE_APP_ID | Gio.ApplicationFlags.FLAGS_NONE)
+        });
         let name_prefix = '';
         if (pkg.name.endsWith('Devel')) {
             name_prefix = '(Development) ';
@@ -90,8 +96,6 @@ const Application = GObject.registerClass(
     vfunc_startup() {
         super.vfunc_startup();
         Handy.init();
-        // ensure the type before we call to GtkBuilder
-        Gtk.Entry;
 
         Util.loadStyleSheet('/org/gnome/Weather/application.css');
 
@@ -266,5 +270,13 @@ let ShellIntegration = class ShellIntegration {
 function main(argv) {
     initEnvironment();
 
-    return (new Application()).run(argv);
+    const application = new Application();
+
+    application.connect("window-removed", (_, window) => {
+        if (window instanceof Window.MainWindow) {
+            window._cleanup();
+        }
+    });
+
+    application.run(argv);
 }
