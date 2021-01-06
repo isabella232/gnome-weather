@@ -36,8 +36,7 @@ const UPDATED_TIME_TIMEOUT = 60; //s
 
 var WeatherWidget = GObject.registerClass({
     Template: 'resource:///org/gnome/Weather/weather-widget.ui',
-    InternalChildren: ['contentFrame', 'outerGrid',
-                       'conditionsImage', 'placesButton',
+    InternalChildren: ['contentGrid', 'conditionsImage', 'placesButton',
                        'temperatureLabel', 'apparentLabel',
                        'forecastStack','leftButton', 'rightButton',
                        'forecast-hourly', 'forecast-hourly-viewport',
@@ -119,7 +118,7 @@ var WeatherWidget = GObject.registerClass({
     }
 
     _cleanup() {
-        this._contentFrame.unparent();
+        this._contentGrid.unparent();
         this._worldView._cleanup();
     }
 

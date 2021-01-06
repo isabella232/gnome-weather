@@ -5,11 +5,9 @@
     <property name="layout_manager">
       <object class="GtkBinLayout"/>
     </property>
-    <child>
-      <object class="GtkFrame" id="contentFrame">
-        <property name="name">weather-page-content-view</property>
+
         <child>
-          <object class="GtkGrid" id="outerGrid">
+          <object class="GtkGrid" id="contentGrid">
             <property name="vexpand">True</property>
             <child>
               <object class="GtkOverlay" id="forecast-overlay">
@@ -201,7 +199,5 @@
             </child>
           </object>
         </child>
-      </object>
-    </child>
   </template>
 </interface>
