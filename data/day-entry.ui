@@ -247,10 +247,10 @@
   <template class="Gjs_DayEntry" parent="GtkBox">
     <property name="width_request">100</property>
     <property name="height_request">200</property>
-    <property name="hexpand">True</property>
-    <property name="vexpand">True</property>
     <property name="margin_top">18</property>
     <property name="margin_bottom">18</property>
+    <property name="hexpand">True</property>
+    <property name="vexpand">True</property>
     <property name="orientation">vertical</property>
     <property name="spacing">18</property>
     <child>

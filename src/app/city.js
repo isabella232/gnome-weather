@@ -44,11 +44,13 @@ var WeatherWidget = GObject.registerClass({
                        'forecast-daily', 'forecast-daily-viewport',
                        'updatedTimeLabel', 'attributionLabel'],
 }, class WeatherWidget extends Gtk.Widget {
+    _init(params) {
+        const { application, window, ...parentParams } = params;
 
-    _init(application, window, params) {
-        super._init(Object.assign({
+        super._init({
+            ...parentParams,
             name: 'weather-page'
-        }, params));
+        });
 
         this._info = null;
 
@@ -282,10 +284,11 @@ var WeatherView = GObject.registerClass({
     InternalChildren: ['spinner']
 }, class WeatherView extends Gtk.Stack {
 
-    _init(application, window, params) {
-        super._init(params);
+    _init(params) {
+        const { application, window, ...parentParams } = params;
+        super._init(parentParams);
 
-        this._infoPage = new WeatherWidget(application, window);
+        this._infoPage = new WeatherWidget({ application, window });
         this.add_named(this._infoPage, 'info');
 
         this._info = null;

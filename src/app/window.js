@@ -95,8 +95,12 @@ var MainWindow = GObject.registerClass(
 
         this._stack = builder.get_object('main-stack');
 
-        this._cityView = new City.WeatherView(this.application, this, { hexpand: true,
-                                                vexpand: true });
+        this._cityView = new City.WeatherView({
+            application: this.application,
+            window: this,
+            hexpand: true,
+            vexpand: true
+        });
         this._stack.add_child(this._cityView);
 
         this._forecastStackSwitcher = builder.get_object('switcher-title');
