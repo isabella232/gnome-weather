@@ -5,7 +5,6 @@
     <property name="orientation">vertical</property>
     <child>
       <object class="HdyHeaderBar" id="header-bar">
-        <property name="vexpand">False</property>
         <property name="centering_policy">strict</property>
         <child>
           <object class="GtkButton" id="refresh-button">
